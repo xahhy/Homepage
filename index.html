@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script src="jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .gallery div {
+            text-align: center;
+        }
+
+        .image-response {
+            width: 80%;
+            height: 100%;
+        }
+
+        .gallery > div:hover {
+            z-index: 1;
+        }
+
+        .gallery > div:hover {
+            transform: scale(1.3, 1.3);
+            transition: .3s transform;
+        }
+
+        .gallery > div {
+            transition: .5s transform;
+            transform: translateZ(0);
+            margin-top: auto;
+            /* hack */
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            position: absolute;
+            /*background:#3d71b8 url(css3-image-hover-effect/igloo-800_1x.jpg) no-repeat center fixed;*/
+            background-size: 100% 100%;
+        }
+
+        /*.vertical-center {*/
+        /*position: relative;*/
+        /*top: 50%;*/
+        /*transform: translateY(-50%);*/
+        /*}*/
+        /*.gallery {*/
+        /*!*position: absolute;*!*/
+        /*height: 40%;*/
+        /*width: 50%;*/
+        /*margin: auto;*/
+        /*text-align: center;*/
+        /*}*/
+        button {
+            font-size: 80px !important;
+            height: 150px;
+        }
+
+        /*web background*/
+        .container {
+            display: table;
+            height: 100%;
+        }
+
+        .row {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="page-header"><h1 class="text-center">西安交通大学</h1></div>
+<div class="container">
+    <div class="gallery row">
+        <button type="button" class="btn btn-danger btn-lg btn-block">块级的原始按钮</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block">块级的原始按钮</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block">块级的原始按钮</button>
+
+        <!--<div class=" col-lg-4 col-md-4 col-sm-12 text-center vertical-center" id="vod">-->
+        <!--<img class="image-response img-thumbnail" src="css3-image-hover-effect/landscape-test-1_1x.jpg" alt="">-->
+        <!--<h2>视频点播</h2>-->
+        <!--</div>-->
+        <!--<div class=" col-lg-4 col-md-4 col-sm-12 text-center vertical-center" id="live">-->
+        <!--<img class="image-response img-thumbnail" src="css3-image-hover-effect/landscape-test-1_1x.jpg" alt="">-->
+        <!--<h2>视频直播与回看</h2>-->
+        <!--</div>-->
+        <!--<div class=" col-lg-4 col-md-4 col-sm-12 text-center vertical-center" id="blue">-->
+        <!--<img class="image-response img-thumbnail" src="css3-image-hover-effect/landscape-test-1_1x.jpg" alt="">-->
+        <!--<h2>蓝色海疆</h2>-->
+        <!--</div>-->
+    </div>
+</div>
+<script>
+    var vod_sel = $("#vod");
+    var live_sel = $("#live");
+    var blue_sel = $("#blue");
+    var vod_link = '#vod';
+    var live_link = '#live';
+    var blue_link = '#blue';
+    $(function () {
+        vod_sel.click(function () {
+            window.location = vod_link;
+        });
+        live_sel.click(function () {
+            window.location = live_link;
+        });
+        blue_sel.click(function () {
+            window.location = blue_link;
+        });
+    })
+</script>
+</body>
+</html>
