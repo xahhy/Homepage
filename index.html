@@ -37,8 +37,11 @@
             width: 100%;
             margin: 0;
             position: absolute;
-            /*background:#3d71b8 url(css3-image-hover-effect/igloo-800_1x.jpg) no-repeat center fixed;*/
+            background:#3d71b8 url(all_blue.jpg) no-repeat center fixed;
             background-size: 100% 100%;
+            /*opacity: 0.5;*/
+            /*-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);*/
+            /*filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);*/
         }
 
         /*.vertical-center {*/
@@ -68,15 +71,18 @@
             display: table-cell;
             vertical-align: middle;
         }
+        .m-header {
+            font-size: 40px;
+        }
     </style>
 </head>
 <body>
-<div class="page-header"><h1 class="text-center">西安交通大学</h1></div>
-<div class="container">
-    <div class="gallery row">
-        <button type="button" class="btn btn-danger btn-lg btn-block">块级的原始按钮</button>
-        <button type="button" class="btn btn-warning btn-lg btn-block">块级的原始按钮</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block">块级的原始按钮</button>
+<div class="page-header "><h1 class="text-center m-header">西安交通大学</h1></div>
+<div class="container background-img">
+    <div class="gallery row ">
+        <button type="button" class="btn btn-danger btn-lg btn-block disabled">视频点播</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block">视频直播与回看</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block">蓝色海疆</button>
 
         <!--<div class=" col-lg-4 col-md-4 col-sm-12 text-center vertical-center" id="vod">-->
         <!--<img class="image-response img-thumbnail" src="css3-image-hover-effect/landscape-test-1_1x.jpg" alt="">-->
