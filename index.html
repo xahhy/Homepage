@@ -58,7 +58,13 @@
         /*}*/
         button {
             font-size: 60px !important;
-            height: 120px;
+            height: 100px;
+            transition: .5s transform;
+            transform: translateZ(0);
+        }
+        button:hover {
+            transform: scale(1.3, 1.3);
+            transition: .3s transform;
         }
 
         /*web background*/
@@ -80,9 +86,9 @@
 <!--<div class="page-header "><h1 class="text-center m-header ">西安交通大学</h1></div>-->
 <div class="container background-img">
     <div class="gallery row ">
-        <button type="button" class="btn btn-danger btn-lg btn-block disabled">视频点播</button>
-        <button type="button" class="btn btn-warning btn-lg btn-block">视频直播与回看</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block">蓝色海疆</button>
+        <button id="vod" type="button" class="btn btn-danger btn-lg btn-block disabled">视频点播 <span class="small">Comming soon...</span></button>
+        <button id="live" type="button" class="btn btn-warning btn-lg btn-block">视频直播与回看</button>
+        <button id="blue" type="button" class="btn btn-primary btn-lg btn-block">蓝色海疆</button>
 
         <!--<div class=" col-lg-4 col-md-4 col-sm-12 text-center vertical-center" id="vod">-->
         <!--<img class="image-response img-thumbnail" src="css3-image-hover-effect/landscape-test-1_1x.jpg" alt="">-->
@@ -103,7 +109,7 @@
     var live_sel = $("#live");
     var blue_sel = $("#blue");
     var vod_link = '#vod';
-    var live_link = '#live';
+    var live_link = '/replay/replay/index.html';
     var blue_link = '#blue';
     $(function () {
         vod_sel.click(function () {
