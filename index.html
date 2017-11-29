@@ -10,28 +10,22 @@
         .gallery div {
             text-align: center;
         }
-
         .image-response {
             width: 80%;
             height: 100%;
         }
-
         .gallery > div:hover {
             z-index: 1;
         }
-
         .gallery > div:hover {
-            transform: scale(1.1, 1.1);
+            /* transform: scale(1.1, 1.1);*/
             transition: .3s transform;
         }
-
         .gallery > div {
             transition: .5s transform;
             transform: translateZ(0);
             margin-top: auto;
-            /* hack */
         }
-
         body {
             height: 100%;
             width: 100%;
@@ -43,28 +37,14 @@
             /*-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);*/
             /*filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);*/
         }
-
-        /*.vertical-center {*/
-        /*position: relative;*/
-        /*top: 50%;*/
-        /*transform: translateY(-50%);*/
-        /*}*/
-        /*.gallery {*/
-        /*!*position: absolute;*!*/
-        /*height: 40%;*/
-        /*width: 50%;*/
-        /*margin: auto;*/
-        /*text-align: center;*/
-        /*}*/
         button {
             font-size: 60px !important;
             height: 100px;
             transition: .5s transform;
             transform: translateZ(0);
-
         }
         button:hover {
-            transform: scale(1.1, 1.1);
+            //transform: scale(1.1, 1.1);
             transition: .3s transform;
         }
 
@@ -73,7 +53,6 @@
             display: table;
             height: 100%;
         }
-
         .row {
             display: table-cell;
             vertical-align: middle;
@@ -106,7 +85,7 @@
             <button id="blue" type="button" class="btn btn-primary btn-lg btn-block">蓝色海疆</button>
         </div>
 	<div>
-            <button id="download" type="button" class="btn btn-info btn-lg btn-block disabled">安卓手机/平板App安装</button>
+            <button id="download" type="button" class="btn btn-info btn-lg btn-block ">安卓手机/平板App安装</button>
         </div>
         <!-- 
         <div>
@@ -119,8 +98,6 @@
     var vod_sel = $("#vod");
     var live_sel = $("#live");
     var blue_sel = $("#blue");
-    //var your_sel = $("#your-id")
-
     var vod_link = '//vod.com';
     var live_link = '//replay.com/replay/index.html';
     //var live_link = '/replay/replay1/index.html';
@@ -179,8 +156,8 @@
      //       window.location = '/replay/replay1/index.html';
      //   })
 	$("#download").click(function(){
-            //window.location = 'http://tv.com/mobile_app/mobile_media.apk';
-		window.location = '#vod';
+            window.location = '//tv.com/mobile_app/mobile_media.apk';
+	//	window.location = '#vod';
         })
         // your_sel.click(function () {
             // window.location = your_link;
