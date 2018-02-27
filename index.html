@@ -7,25 +7,9 @@
     <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
     <script src="src/bootstrap/js/bootstrap.min.js"></script>
     <style>
-        .gallery div {
-            text-align: center;
+        *{
+            box-sizing: border-box;
         }
-
-        .gallery > div:hover {
-            z-index: 1;
-        }
-
-        .gallery > div:hover {
-            /* transform: scale(1.1, 1.1);*/
-            transition: .3s transform;
-        }
-
-        .gallery > div {
-            transition: .5s transform;
-            transform: translateZ(0);
-            margin-top: auto;
-        }
-
         body {
             height: 100%;
             width: 100%;
@@ -40,7 +24,7 @@
 
         button {
             font-size: 30px !important;
-            height: 100px;
+            height: 80px;
             transition: .5s transform;
             transform: translateZ(0);
         }
@@ -60,16 +44,30 @@
             vertical-align: middle;
         }
 
-        .m-header {
-            font-size: 40px;
-        }
-
         .gallery div {
-            margin: 50px 50px;
+            margin: 80px 50px;
         }
 
         .item {
             box-shadow: 4px 3px 8px #e7e7e7, -2px -2px 8px #e7e7e7;
+        }
+        .btn_child {
+            width: 50%;
+            height: 40px;
+            font-size: 15px !important;
+            float: left;
+            margin-top: 2px;
+            color: #fff !important;
+        }
+        .btn_child:hover, .btn_child:focus{
+            color: #fff;
+            background-color: #255625;
+        }
+        .btn_blue_phone{
+            background-color: #4cae4c;
+        }
+        .btn_blue_pc{
+            background-color: #4cae4c;
         }
     </style>
 </head>
