@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <script src="src/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
+    <script src="src/jquery/dist/jquery.min.js"></script>
+    <script src="src/bootstrap/popper.min.js"></script>
     <script src="src/bootstrap/js/bootstrap.min.js"></script>
     <style>
-        *{
-            box-sizing: border-box;
-        }
         body {
             height: 100%;
             width: 100%;
@@ -21,150 +19,164 @@
             /*-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);*/
             /*filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);*/
         }
-
         button {
             font-size: 30px !important;
             height: 80px;
             transition: .5s transform;
             transform: translateZ(0);
         }
-
         button:hover {
             transition: .3s transform;
         }
-
-        /*web background*/
-        .container {
-            display: table;
-            height: 100%;
-        }
-
-        .row {
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        .gallery div {
-            margin: 80px 50px;
-        }
-
         .item {
             box-shadow: 4px 3px 8px #e7e7e7, -2px -2px 8px #e7e7e7;
         }
-        .btn_child {
-            width: 50%;
-            height: 40px;
-            font-size: 15px !important;
-            float: left;
-            margin-top: 2px;
-            color: #fff !important;
-        }
-        .btn_child:hover, .btn_child:focus{
-            color: #fff;
-            background-color: #255625;
-        }
-        .btn_blue_phone{
-            background-color: #4cae4c;
-        }
-        .btn_blue_pc{
-            background-color: #4cae4c;
+        .m-list-wrapper {
+            height: 100%;
+            padding-top: 20%;
+            padding-bottom: 20%;
         }
     </style>
 </head>
 <body>
 <!-- <div class="page-header "><h1 class="text-center m-header ">西安交通大学</h1></div> -->
 <!-- search "your_" for all need reference to custmize -->
-<div class="container background-img">
-    <div class="gallery row ">
-        <div>
-            <button id="vod" type="button" class="btn btn-danger btn-block item">千百万工程</button>
-        </div>
-        <div>
-            <button id="live" type="button" class="btn btn-warning btn-block item">视频直播</button>
-        </div>
-        <!--
-            <div>
-                <button id="live1" type="button" class="btn btn-warning btn-lg btn-block">视频直播 2</button>
+
+<div class="d-flex container align-items-center align-content-between m-list-wrapper flex-column">
+    <!--<div class="row justify-content-between d-flex flex-column">-->
+    <div class="col d-flex align-items-center">
+        <div id="id_server_select" class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle item" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                选择服务器
+                <span class="badge badge-success">自动</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuButton">
+                <button class="dropdown-item" type="button" number="0">自动</button>
+                <button class="dropdown-item" type="button" number="5">5号</button>
+                <button class="dropdown-item" type="button" number="6">6号</button>
+                <button class="dropdown-item" type="button" number="7">7号</button>
             </div>
-        -->
-        <div>
-            <button id="blue" type="button" class="btn btn-primary btn-block item">蓝色海疆</button>
-        </div>
-        <div>
-            <button id="download" type="button" class="btn btn-info btn-block item">安卓手机/平板App安装</button>
         </div>
     </div>
+    <div class="col d-flex align-items-center">
+        <button id="vod" type="button" class="btn btn-danger btn-block item">千百万工程</button>
+    </div>
+    <div class="col d-flex align-items-center">
+        <button id="live" type="button" class="btn btn-warning btn-block item">视频直播</button>
+    </div>
+    <!--
+        <div>
+            <button id="live1" type="button" class="btn btn-warning btn-lg btn-block">视频直播 2</button>
+        </div>
+    -->
+    <div class="col d-flex align-items-center">
+        <button id="blue" type="button" class="btn btn-primary btn-block item">蓝色海疆</button>
+    </div>
+    <div class="col d-flex align-items-center">
+        <button id="download" type="button" class="btn btn-info btn-block item">安卓手机/平板App安装</button>
+    </div>
+    <!--</div>-->
 </div>
 <script>
-    var vod_sel = $("#vod");
-    var live_sel = $("#live");
-    var blue_sel = $("#blue");
+    var $vod_sel = $("#vod");
+    var $live_sel = $("#live");
+    var $blue_sel = $("#blue");
+    var $download = $("#download");
     var vod_link = '//vod.com';
     var live_link = '//replay.com/replay/index.html';
-    //var live_link = '/replay/replay1/index.html';
     var live_link_pc = '//replay.com/replay/index.html';
-    //var live_link_pc = '/replay/pc/index.html';
     var blue_link = '//news.com:8080';
-    //var your_link = "http://xx.com/"
     var msg;
+    var current_server = 0;
+    var $idServerSelect = $("#id_server_select");
+    var SERVERS = {
+        "0": {
+            name: "自动",
+            vod_link: "//vod.com",
+            live_link: "//replay.com/replay/index.html",
+            live_link_pc: "//replay.com/replay/index.html",
+            blue_link: "//news.com:8080",
+            blue_link_pc: "//newspc.com:8910"
+        },
+        "5": {
+            name: "5号",
+            vod_link: "//vod.com",
+            live_link: "//10.13.5.2/replay/index.html",
+            live_link_pc: "//10.13.5.2/replay/index.html",
+            blue_link: "//10.13.5.15:8080",
+            blue_link_pc: "//10.13.5.16:8910"
+        },
+        "6": {
+            name: "6号",
+            vod_link: "//vod.com",
+            live_link: "//10.13.6.2/replay/index.html",
+            live_link_pc: "//10.13.6.2/replay/index.html",
+            blue_link: "//10.13.6.15:8080",
+            blue_link_pc: "//10.13.6.16:8910"
+        },
+        "7": {
+            name: "7号",
+            vod_link: "//vod.com",
+            live_link: "//10.13.7.2/replay/index.html",
+            live_link_pc: "//10.13.7.2/replay/index.html",
+            blue_link: "//10.13.7.15:8080",
+            blue_link_pc: "//10.13.7.16:8910"
+        }
+    };
 
+    function SetCurrentServer(number) {
+        current_server = number;
+        $idServerSelect.find(".badge").html(SERVERS[current_server].name);
+    }
+
+    /**
+     * @return {boolean}
+     */
     function IsPC() {
         msg = navigator.userAgent.toLowerCase();
         console.log(msg);
-        if (msg.indexOf("windows") > 0 || msg.indexOf("linux") > 0 && msg.indexOf("android") < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return msg.indexOf("windows") > 0 || msg.indexOf("linux") > 0 && msg.indexOf("android") < 0;
     }
 
+    /**
+     * @return {boolean}
+     */
     function IsAndroid() {
         var u = navigator.userAgent;
-        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-        return isAndroid;
+         //android终端
+        return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
     }
 
 
     $(function () {
         var now = new Date();
-        if(now.getHours() >= 6 && now.getHours() < 18) {
+        if (now.getHours() >= 6 && now.getHours() < 18) {
             document.body.style.backgroundImage = 'url(day.jpg)';
-        }else{
+        } else {
             document.body.style.backgroundImage = 'url(night.jpg)';
         }
-        if (IsAndroid())
-        //window.location = "/index1.html";
-        // var is_pc = isPC();
-        //  if(is_pc){
-        //     live_link = live_link_pc;
-        //  }
-        // $("h1").html(msg);
-        // return;
-            vod_sel.click(function () {
-                window.location = vod_link;
-            });
-        live_sel.click(function () {
-            if (IsPC())
-                window.location = live_link_pc;
-            else
-                window.location = live_link;
+        $vod_sel.click(function () {
+            window.location = SERVERS[current_server].vod_link;
         });
-        blue_sel.click(function () {
+        $live_sel.click(function () {
             if (IsPC())
-                window.location = '//newspc.com:8910';
+                window.location = SERVERS[current_server].live_link_pc;
             else
-                window.location = blue_link;
+                window.location = SERVERS[current_server].live_link;
         });
-        //  $("#live1").click(function(){
-        //       window.location = '/replay/replay1/index.html';
-        //   })
-        $("#download").click(function () {
+        $blue_sel.click(function () {
+            if (IsPC())
+                window.location = SERVERS[current_server].blue_link_pc;
+            else
+                window.location = SERVERS[current_server].blue_link;
+        });
+        $download.click(function () {
             window.location = '//tv.com/mobile_app/mobile_media.apk';
-            //	window.location = '#vod';
+        });
+        $idServerSelect.find(".dropdown-item").click(function () {
+            SetCurrentServer(this.getAttribute("number"))
         })
-        // your_sel.click(function () {
-        // window.location = your_link;
-        // });
     })
 </script>
 </body>
