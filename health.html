@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>健康检查</title>
+    <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
+    <script src="src/jquery/dist/jquery.min.js"></script>
+    <script src="src/bootstrap/popper.min.js"></script>
+    <script src="src/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">当前设备与各个地点服务连接状态</h1>
+    <br/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>地点</th>
+            <th>DNS服务</th>
+            <th>直播回看</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>5号点</td>
+            <td class="dns_5">
+                <button class="btn btn-warning">正在测试</button>
+            </td>
+            <td class="replay_5">
+                <button class="btn btn-warning">正在测试</button>
+            </td>
+        </tr>
+        <tr>
+            <td>6号点</td>
+            <td class="dns_6">
+                <button class="btn btn-warning">正在测试</button>
+            </td>
+            <td class="replay_6">
+                <button class="btn btn-warning">正在测试</button>
+            </td>
+        </tr>
+        <tr>
+            <td>7号点</td>
+            <td class="dns_7">
+                <button class="btn btn-warning">正在测试</button>
+            </td>
+            <td class="replay_7">
+                <button class="btn btn-warning">正在测试</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var SUCCESS_MSG = '<button class="btn btn-success">成功</button>';
+    var FAILED_MSG= '<button class="btn btn-danger">失败</button>';
+    var HOME_PAGE_URL_5 = '//10.13.5.10/index.html';
+    var HOME_PAGE_URL_6 = '//10.13.6.10/index.html';
+    var HOME_PAGE_URL_7 = '//10.13.7.10/index.html';
+    var REPLAY_URL_5 = '//10.13.5.2/replay/index.html';
+    var REPLAY_URL_6 = '//10.13.6.2/replay/index.html';
+    var REPLAY_URL_7 = '//10.13.7.2/replay/index.html';
+    var $dns_5 = $('.dns_5');
+    var $dns_6 = $('.dns_6');
+    var $dns_7 = $('.dns_7');
+    var $replay_5 = $('.replay_5');
+    var $replay_6 = $('.replay_6');
+    var $replay_7 = $('.replay_7');
+
+    var check_list = [
+        [HOME_PAGE_URL_5, $dns_5],
+        [HOME_PAGE_URL_6, $dns_6],
+        [HOME_PAGE_URL_7, $dns_7],
+        [REPLAY_URL_5, $replay_5],
+        [REPLAY_URL_6, $replay_6],
+        [REPLAY_URL_7, $replay_7],
+    ]
+    check_list.forEach(function (tuple) {
+        var url = tuple[0];
+        var target = tuple[1];
+        console.log(url);
+        check(url, target);
+    });
+    function check(url, target) {
+        $.ajax({
+            async: true,
+            cache: false,
+            timeout: 5000,
+            type: "GET",
+            url: url,
+            data: {},
+            error: function (jqXHR, textStatus, errorThrown) {
+                target.html(FAILED_MSG);
+            },
+            success: function (msg) {
+                target.html(SUCCESS_MSG);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
