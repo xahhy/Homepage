@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home Page</title>
     <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
     <script src="src/jquery/dist/jquery.min.js"></script>
@@ -36,12 +37,24 @@
             padding-top: 5%;
             padding-bottom: 5%;
         }
+        @media screen and (max-aspect-ratio: 1/1) {
+            .m-list-wrapper {
+                height: 100%;
+                padding-top: 25vh;
+                padding-bottom: 25vh;
+            }
+            button {
+                font-size: 15px !important;
+                height: 40px;
+                transition: .5s transform;
+                transform: translateZ(0);
+            }
+        }
     </style>
 </head>
 <body>
 <!-- <div class="page-header "><h1 class="text-center m-header ">西安交通大学</h1></div> -->
 <!-- search "your_" for all need reference to custmize -->
-
 <div class="d-flex container align-items-center align-content-between m-list-wrapper flex-column">
     <!--<div class="row justify-content-between d-flex flex-column">-->
     <div class="col d-flex align-items-center">
@@ -60,23 +73,17 @@
         </div>
     </div>
     <div class="col d-flex align-items-center">
-        <button id="vod" type="button" class="btn btn-danger btn-block item">千百万工程</button>
+        <button id="vod" type="button" class="btn btn-danger btn-block item">视频点播</button>
     </div>
     <div class="col d-flex align-items-center">
         <button id="live" type="button" class="btn btn-warning btn-block item">视频直播</button>
     </div>
-    <!--
-        <div>
-            <button id="live1" type="button" class="btn btn-warning btn-lg btn-block">视频直播 2</button>
-        </div>
-    -->
     <div class="col d-flex align-items-center">
         <button id="blue" type="button" class="btn btn-primary btn-block item">蓝色海疆</button>
     </div>
     <div class="col d-flex align-items-center">
         <button id="download" type="button" class="btn btn-info btn-block item">安卓手机/平板App安装</button>
     </div>
-    <!--</div>-->
 </div>
 <script>
     var $vod_sel = $("#vod");
